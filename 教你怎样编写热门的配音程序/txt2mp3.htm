@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8" />
+  <script>
+    // azure语音服务密钥和区域
+    var key = "这里填写您azure账号的key"
+    var region = "eastasia"
+    var url = "https://" + region + ".tts.speech.microsoft.com/cognitiveservices/v1"
+
+    function play () {
+      var ssml = `
+      <speak version='1.0' xml:lang='zh-CN'>
+	    <voice xml:lang='zh-CN' name='${document.getElementById('name').value}'>
+		  ${document.getElementById('txt').value}
+        </voice>
+      </speak>`
+
+      fetch(url, {
+        method: 'post',
+        body: ssml,
+        headers: {
+          "Ocp-Apim-Subscription-Key": key,
+          "Content-Type": "application/ssml+xml",
+          "X-Microsoft-OutputFormat": "audio-16khz-128kbitrate-mono-mp3"
+        }
+      })
+        .then(response => response.blob())
+        .then(blob => {
+          var audio = new Audio()
+          audio.src = URL.createObjectURL(blob)
+          audio.play()
+        })
+    }
+  </script>
+</head>
+
+<body>
+  <textarea id="txt" style="width:500px;height:100px;float:left">
+    欢迎来到我的小院，感兴趣朋友私聊我，我们一起锻炼学习编程，一起磨炼意志，提高思维能力，关注我一起交流学习，让你不在枯燥，不在孤单......
+  </textarea>
+  <div style='float:left;margin-left:20px'>
+    语音：
+    <select id="name">
+      <option value="zh-CN-XiaoxiaoNeural">Xiaoxiao (Neural) - 晓晓</option>
+      <option value="zh-CN-YunyangNeural">Yunyang (Neural) - 云扬</option>
+      <option value="zh-CN-XiaochenNeural">Xiaochen (Neural) - 晓辰</option>
+      <option value="zh-CN-XiaohanNeural">Xiaohan (Neural) - 晓涵</option>
+      <option value="zh-CN-XiaomoNeural">Xiaomo (Neural) - 晓墨</option>
+      <option value="zh-CN-XiaoqiuNeural">Xiaoqiu (Neural) - 晓秋</option>
+      <option value="zh-CN-XiaoruiNeural">Xiaorui (Neural) - 晓睿</option>
+      <option value="zh-CN-XiaoshuangNeural">Xiaoshuang (Neural) - 晓双</option>
+      <option value="zh-CN-XiaoxuanNeural">Xiaoxuan (Neural) - 晓萱</option>
+      <option value="zh-CN-XiaoyanNeural">Xiaoyan (Neural) - 晓颜</option>
+      <option value="zh-CN-XiaoyouNeural">Xiaoyou (Neural) - 晓悠</option>
+      <option value="zh-CN-YunxiNeural">Yunxi (Neural) - 云希</option>
+      <option value="zh-CN-YunyeNeural">Yunye (Neural) - 云野</option>
+    </select> <br><br>
+    <button onclick="play()">播放</button>（文字较长的话要多等一会）
+  </div>
+</body>
+
+</html>

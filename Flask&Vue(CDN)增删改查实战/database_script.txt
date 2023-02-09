@@ -1,0 +1,40 @@
+
+CREATE TABLE `members` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `address` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `members` (`id`, `firstname`, `lastname`, `address`) VALUES
+(1, 'Airi', 'Satou', 'Tokyo'),
+(2, 'Angelica ', 'Ramos', 'London'),
+(3, 'Ashton ', 'Cox', 'San Francisco'),
+(4, 'Bradley', 'Greer', 'London'),
+(5, 'Brenden ', 'Wagner', 'San Francisco'),
+(40, 'Brielle', 'Williamson', 'New York'),
+(54, 'Bruno', 'Nash', 'London'),
+(55, 'Caesar', 'Vance', 'New York'),
+(56, 'Cara', 'Stevens', 'New York'),
+(57, 'Cedric', 'Kelly', 'Edinburgh'),
+(58, 'Zorita Serran', 'Satou', 'Tokyo'),
+(59, 'Angelica ', 'Ramos', 'London'),
+(60, 'Ashton ', 'Cox', 'San Francisco'),
+(61, 'Bradley ', 'Greer', 'London'),
+(62, 'Brenden ', 'Wagner', 'San Francisco'),
+(63, 'Brielle', 'Williamson', 'New York'),
+(64, 'Bruno', 'Nash', 'London'),
+(65, 'Caesar', 'Vance', 'New York'),
+(66, 'Cara', 'Stevens', 'New York'),
+(67, 'Brenden ', 'Wagner', 'San Francisco'),
+(68, 'Brielle', 'Williamson', 'New York'),
+(69, 'Bruno', 'Nash', 'London'),
+(70, 'Caesar', 'Vance', 'New York'),
+(71, 'Cara', 'Stevens', 'New York'),
+(72, 'Cedric', 'Kelly', 'Edinburgh');
+
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `members`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
